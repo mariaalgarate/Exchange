@@ -1,0 +1,178 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Producto;
+use App\Models\Resena;
+use App\Models\Categoria;
+
+class ProductController extends Controller
+
+{
+    
+
+    public function store(Request $request)
+    {
+        // Validar los datos del formulario
+        $request->validate([
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+            'estado' => 'required|in:Muy bueno,Bueno,Desgastado',
+            'precio_unitario' => 'required|numeric',
+            'stock' => 'required|integer',
+            'cantidad' => 'required|integer',
+            'transaccion' => 'required|in:Intercambio,Venta,Ambas',
+            'imagen' => 'nullable|image|max:2048', // Imagen opcional
+            
+           
+        ]);
+
+    
+        // Crear un nuevo producto con los datos recibidos del formulario
+        $producto = new Producto();
+        $producto->nombre = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->estado = $request->estado;
+        $producto->precio_unitario = $request->precio_unitario;
+        $producto->stock = $request->stock;
+        $producto->cantidad = $request->cantidad;
+        $producto->transaccion = $request->transaccion; // Asignar el tipo de transacción
+        $producto->usuario_id = auth()->id(); // Asignar el ID del usuario autenticado
+       
+
+         // Manejar la carga de la imagen si está presente
+         if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original
+            $rutaImagen = $imagen->storeAs('product_images', $nombreImagen, 'public'); // Guardar en 'public/product_images'
+            $producto->imagen = $rutaImagen; // Guardar la ruta de la imagen
+        }
+        // Guardar el producto en la base de datos
+        $producto->save();
+
+         //Actualizar categorias asociadas al producto
+         if ($request->has('categorias')) {
+            $producto->categorias()->sync($request->categorias);
+        }
+       
+        // Redirigir a alguna página después de guardar el producto
+        return redirect()->route('my-products')->with('success', '¡Producto creado correctamente!');
+    }
+
+
+    
+    public function edit($id){
+        $producto = Producto::findOrFail($id);
+        return view('product/edit-product', [
+            'producto' => $producto
+        ]);
+    }
+
+    public function delete($id){
+        $producto = Producto::findOrFail($id);
+        return view('product/delete-product', [
+            'producto' => $producto
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $producto = Producto::findOrFail($id);
+        $producto->resenas()->delete();
+        $producto->delete();
+    
+        return redirect()->route('my-products')->with('success', '¡Producto eliminado exitosamente!');
+    }
+    
+    public function update(Request $request, $id)
+{
+        // Valida los datos del formulario
+        $request->validate([
+            'nombre' => 'required|string',
+            'descripcion' => 'required|string',
+            'estado' => 'required|in:Muy bueno,Bueno,Desgastado',
+            'precio_unitario' => 'required|numeric',
+            'stock' => 'required|integer',
+            'cantidad' => 'required|integer',
+            'transaccion' => 'required|in:Intercambio,Venta,Ambas',
+            'imagen' => 'nullable|image|max:2048',
+           
+           
+        ]);
+     
+        // Encuentra el producto por su ID
+        $producto = Producto::findOrFail($id);
+
+        //Guardar la img
+         // Manejar la carga de la imagen si está presente
+         if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original
+            $rutaImagen = $imagen->storeAs('product_images', $nombreImagen, 'public'); // Guardar en 'public/product_images'
+            $producto->imagen = $rutaImagen; // Guardar la ruta de la imagen
+        }
+
+        // Actualiza los datos del producto con los datos recibidos del formulario
+        $producto->nombre = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->estado = $request->estado;
+        $producto->precio_unitario = $request->precio_unitario;
+        $producto->stock = $request->stock;
+        $producto->cantidad = $request->cantidad;
+        $producto->transaccion = $request->transaccion;
+
+       
+   
+        $producto->save();
+
+        // Redirige a alguna página después de guardar los cambios
+        return redirect()->route('my-products')->with('success', '¡Producto actualizado exitosamente!');
+
+}
+
+
+        public function exploreProducts() {
+            $productos = Producto::all(); // Recuperar todos los productos de la base de datos
+            return view('actions/buy', ['productos' => $productos]);
+        }
+
+
+
+    public function addComment(Request $request)
+    {
+        // Crear la nueva reseña
+        $resena = new Resena();
+        $resena->comentario = $request->comentario;
+        $resena->valoracion = $request->valoracion;
+        $resena->id_producto = $request->id; // Asigna el ID del producto al que pertenece la reseña
+        $resena->usuario_id = auth()->id(); // Asigna el ID del usuario que envió la reseña
+
+        // Guardar la reseña en la base de datos
+        if ($resena->save()) {
+            return redirect()->route('show', ['id' => $request->id]); //Utilizo $request->id para redirigir a la vista de la prod$producto
+        } else {
+            return back()->with('error', 'Error al agregar la reseña');
+        }
+
+    }
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query'); // Obtener el término de búsqueda
+        $products = Producto::where('nombre', 'LIKE', '%' . $query . '%')->get(); // Buscar productos cuyo nombre contiene el término
+
+        return view('product.search', ['products' => $products, 'query' => $query]);
+    }
+
+
+    public function show($id){
+        $producto = Producto::find($id); // Busca el producto por ID
+        if (!$producto) {
+            return redirect()->route('actions/my-products')->with('error', 'Producto no encontrado'); // Si no se encuentra, redirige
+        }
+        // Si el producto se encuentra, pasa el producto a la vista
+        return view('product/show', ['producto' => $producto]);
+    }
+}
