@@ -5,15 +5,12 @@
     @endslot
 
     {{-- Body --}}
-    # Alguien está interesado en tu producto
-
-    Hola {{ $destinatario->nombre }},
-    Alguien está interesado en intercambiar el producto "{{ $producto->nombre }}" contigo.
+    # Rechazo de intercambio
+    Hola {{ $user->nombre }},
+    Lamentablemente, el intercambio del producto "{{ $producto->nombre }}" ha sido rechazado.
     Por favor, revisa la aplicación para más detalles.
-
-    @component('mail::button', ['url' => route('show', ['id' => $producto->id])])
-        Ver Producto
-    @endcomponent
+    Gracias,
+    Exchange
 
     {{-- Footer --}}
     @slot('footer')

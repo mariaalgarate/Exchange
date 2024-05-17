@@ -7,8 +7,9 @@
                 <div class="card">
                     <div class="card-header">Rellene el formulario de su producto para el Intercambio</div>
                     <div class="card-body">
-                        <form action="{{ route('uploadExchange', ['id' => $producto->id]) }}" method="post" enctype="multipart/form-data">
+                        <form  method="POST" action="{{ route('uploadExchange', ['id' => $producto->id]) }}" enctype="multipart/form-data">
                             @csrf
+                            @method('POST')
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre del Producto</label>
                                 <input type="text" class="form-control" name="nombre" required>
@@ -35,7 +36,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="imagen" class="form-label">Subir Imágenes</label>
-                                <input type="file" class="form-control" name="imagen" multiple required>
+                                <input type="file" class="form-control" name="imagen" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Registrar Producto</button>
                         </form>

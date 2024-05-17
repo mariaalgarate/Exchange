@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Resena;
 use App\Models\Categoria;
+use App\Models\User;
+use App\Mail\TestLaravelMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Mailable;
+
 
 class ProductController extends Controller
 
@@ -167,12 +172,34 @@ class ProductController extends Controller
     }
 
 
-    public function show($id){
+    public function show($id)
+    {
         $producto = Producto::find($id); // Busca el producto por ID
         if (!$producto) {
             return redirect()->route('actions/my-products')->with('error', 'Producto no encontrado'); // Si no se encuentra, redirige
         }
-        // Si el producto se encuentra, pasa el producto a la vista
-        return view('product/show', ['producto' => $producto]);
+    
+        // Verificar si el correo electrónico ha sido enviado
+        $correoEnviado = false;
+        $usuario_id = $producto->usuario_id;
+        $destinatario = User::find($usuario_id);
+    
+        try {
+            // Lógica para enviar el correo electrónico
+            Mail::to($destinatario->email)->send(new TestLaravelMail($destinatario, $producto));
+            $correoEnviado = true;
+        } catch (\Exception $e) {
+            // Captura cualquier excepción que ocurra durante el envío del correo
+            $correoEnviado = false;
+            // Aquí puedes registrar el error o manejarlo de alguna otra manera según tus necesidades
+        }
+    
+        // Si el producto se encuentra, pasa el producto y la variable de correo enviado a la vista
+        return view('product/show', [
+            'producto' => $producto,
+            'correoEnviado' => $correoEnviado,
+        ]);
     }
+    
+    
 }

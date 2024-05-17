@@ -1,5 +1,5 @@
 <?php
-use App\Models\producto;
+use App\Models\Producto;
 $productos = Producto::all();
 ?>
 @extends('layouts.app')
@@ -25,6 +25,41 @@ $productos = Producto::all();
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
         }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between; /* Distribuye espacio uniformemente */
+        }
+
+        .product {
+            flex: 1 1 calc(33.333% - 20px); /* Toma 33.333% del ancho menos 20px de margen */
+            box-sizing: border-box;
+            margin: 10px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .product {
+                flex: 1 1 calc(50% - 20px); /* Toma 50% del ancho menos 20px de margen */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product {
+                flex: 1 1 100%; /* Toma 100% del ancho en pantallas pequeñas */
+            }
+        }
     </style>
     <main class="pb-4">
         <div class="banner">
@@ -38,13 +73,12 @@ $productos = Producto::all();
                 @foreach ($productos as $producto)
                     <!-- Recorrer y mostrar productos -->
                     <div class="product">
-                        <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}">
+                        <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ asset('storage/' . $producto->imagen) }}" width="100px">
                         <h3>{{ $producto->nombre }}</h3>
                         <p>{{ $producto->descripcion }}</p>
                         <span class="price">{{ number_format($producto->precio_unitario, 2) }}€</span>
                         <!-- Precio formateado -->
-                        <a href="{{ route('addToCart', ['id' => $producto->id]) }}" class="btn btn-primary">Agregar al
-                            carrito</a>
+                        <a href="{{ route('addToCart', ['id' => $producto->id]) }}" class="btn btn-primary">Agregar al carrito</a>
                     </div>
                 @endforeach
             </div>
@@ -52,17 +86,12 @@ $productos = Producto::all();
     </main>
 @endsection
 <script>
-    // Selecciona el botón
-    const botonAgregar = document.getElementById('agregar-al-carrito');
-
-    // Agrega un event listener para el clic en el botón
-    botonAgregar.addEventListener('click', function() {
-        // Agrega la clase 'animacion-agregar' al botón
-        botonAgregar.classList.add('animacion-agregar');
-
-        // Después de un tiempo, elimina la clase para que la animación se pueda repetir
-        setTimeout(function() {
-            botonAgregar.classList.remove('animacion-agregar');
-        }, 1000); // Duración de la animación en milisegundos
+    document.querySelectorAll('.btn.btn-primary').forEach(button => {
+        button.addEventListener('click', function() {
+            button.classList.add('animacion-agregar');
+            setTimeout(() => {
+                button.classList.remove('animacion-agregar');
+            }, 1000);
+        });
     });
 </script>

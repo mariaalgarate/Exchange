@@ -8,20 +8,26 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Producto;
+use App\Models\User;
 
 class TestLaravelMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $vendedor;
-    public $interesado;
+    public $destinatario;
     public $producto;
 
-    public function __construct($vendedor, $interesado, $producto)
+    public function __construct(User $destinatario, Producto $producto)
     {
-        $this->vendedor = $vendedor;
-        $this->interesado = $interesado;
+        $this->destinatario = $destinatario;
         $this->producto = $producto;
+    }
+
+    public function build()
+    {
+        return $this->markdown('mail.test-email')
+                    ->subject('Alguien está interesado en tu producto');
     }
 
     public function envelope(): Envelope
@@ -36,8 +42,7 @@ class TestLaravelMail extends Mailable
         return new Content(
             view: 'mail.test-email',
             with: [
-                'vendedor' => $this->vendedor,
-                'interesado' => $this->interesado,
+                'destinatario' => $this->destinatario,
                 'producto' => $this->producto,
             ],
         );

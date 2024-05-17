@@ -7,21 +7,21 @@
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="5000">
                     <img src="../imgs/bannerPrincipal1.jpg" class="d-block w-100" alt="Banner 1" style="object-position: top;">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-md-block">
                         <h2>Descubre un nuevo mundo de intercambios</h2>
                         <p>¡Únete a nuestra comunidad y encuentra productos únicos para intercambiar!</p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="5000">
                     <img src="../imgs/bannerPrincipal2.jpg" class="d-block w-100" alt="Banner 2">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-md-block">
                         <h2>Explora ofertas exclusivas</h2>
                         <p>Encuentra productos de alta calidad a precios increíbles en nuestro marketplace.</p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="5000">
                     <img src="../imgs/bannerPrincipal3.jpg" class="d-block w-100" alt="Banner 3">
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-md-block">
                         <h2>Descubre la comodidad de comprar en línea</h2>
                         <p>Écha un vistazo a nuestro amplio catálogo y disfruta de una experiencia de compra conveniente
                             desde la comodidad de tu hogar.</p>
@@ -49,6 +49,7 @@
                             <div class="text-overlay">
                                 <h2>Empieza a realizar intercambios</h2>
                                 <p>¡Descubre una nueva forma de intercambiar productos!</p>
+                                <p style="font-size: 13px; text-decoration: underline;">Clica aquí para intercambiar tus productos</p>
                             </div>
                         </div>
                     </a>
@@ -59,6 +60,7 @@
                             <div class="text-overlay">
                                 <h2>Explora nuestras ventas</h2>
                                 <p>Encuentra productos únicos a precios increíbles.</p>
+                                <p style="font-size: 13px; text-decoration: underline;">Clica aquí para empezar a vender</p>
                             </div>
                         </div>
                     </a>
@@ -69,6 +71,7 @@
                             <div class="text-overlay">
                                 <h2>Descubre nuestras compras</h2>
                                 <p>Encuentra lo que necesitas en nuestro amplio catálogo.</p>
+                                <p style="font-size: 13px; text-decoration: underline;">Clica aquí para comprar</p>
                             </div>
                         </div>
                     </a>
@@ -96,51 +99,47 @@
 
 
         <!-- Lo mejor de Exchange -->
-        <div class="container py-5">
-            <div class="row mt-5">
-                <h3>Lo mejor de Exchange</h3>
-            </div>
-            <div class="row">
-                <div class="col-md-12 mt-4">
-                    <div class="circle-container">
-                        <a href="{{ route('categories/technology') }}" target="_blank">
-                            <!-- Reemplaza URL_de_destino con la URL a la que quieres enlazar -->
-                            <div class="circle">
-                                <img src="../imgs/productos-tecnologicos.jpg" class="img-fluid" alt="Imagen 1">
-                                <div class="circle-overlay">Electrónica</div>
-                            </div>
-                        </a>
-                        <a href="{{ route('categories/home-appliances') }}" target="_blank">
-                            <div class="circle">
-                                <img src="../imgs/productos-electrodomesticos.jpg" class="img-fluid" alt="Imagen 2">
-                                <div class="circle-overlay">Electrodomésticos</div>
-                            </div>
-                        </a>
-                        <a href="{{ route('categories/clothes') }}" target="_blank">
-                            <div class="circle">
-                                <img src="../imgs/productos-ropa.jpg" class="img-fluid" alt="Imagen 3">
-                                <div class="circle-overlay">Ropa</div>
-                            </div>
-                        </a>
-                        <a href="{{ route('categories/household-items') }}" target="_blank">
-                            <div class="circle">
-                                <img src="../imgs/productos-hogar.jpg" class="img-fluid" alt="Imagen 4">
-                                <div class="circle-overlay">Hogar</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+<div class="container py-5">
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="text-center">Lo mejor de Exchange</h3>
         </div>
-    </main>
-    <!-- Popup de cookies Inicio -->
-    <div id="cookie-popup" class="cookie-popup">
-        <p class="mb-3">Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio
-            web, usted acepta nuestro uso de cookies de acuerdo con nuestra <a href="/cookies-policy">política de
-                cookies</a>.</p>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#Modalcookies">Configuración de cookies</button>
-        <button id="accept-cookies-btn" class="btn btn-primary">Aceptar</button>
-        <button id="reject-cookies-btn" class="btn btn-secondary">Rechazar</button>
     </div>
+    <div class="row justify-content-center mt-4 text-center">
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <a href="{{ route('categories/technology') }}" target="_blank" class="text-decoration-none">
+                <div class="circle">
+                    <img src="../imgs/productos-tecnologicos.jpg" class="img-fluid" alt="Imagen 1">
+                    <div class="circle-overlay">Electrónica</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <a href="{{ route('categories/home-appliances') }}" target="_blank" class="text-decoration-none">
+                <div class="circle">
+                    <img src="../imgs/productos-electrodomesticos.jpg" class="img-fluid" alt="Imagen 2">
+                    <div class="circle-overlay">Electrodomésticos</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <a href="{{ route('categories/clothes') }}" target="_blank" class="text-decoration-none">
+                <div class="circle">
+                    <img src="../imgs/productos-ropa.jpg" class="img-fluid" alt="Imagen 3">
+                    <div class="circle-overlay">Ropa</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <a href="{{ route('categories/household-items') }}" target="_blank" class="text-decoration-none">
+                <div class="circle">
+                    <img src="../imgs/productos-hogar.jpg" class="img-fluid" alt="Imagen 4">
+                    <div class="circle-overlay">Hogar</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+    </main>
 @endsection

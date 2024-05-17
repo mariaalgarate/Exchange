@@ -10,7 +10,7 @@
             @foreach($products as $product)
                 <div class="col-md-4"> <!-- Dividir en columnas -->
                     <div class="card mb-3"> <!-- Uso de tarjetas para mejor presentación -->
-                        <img src="{{ asset('storage/' . auth()->user()->imagen) }}" class="card-img-top" alt="{{ $product->nombre }}">
+                        <img src="{{ asset('storage/' . $product->imagen) }}" class="card-img-top" alt="{{ asset('storage/' . $product->imagen) }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->nombre }}</h5>
                             <p class="card-text">{{ $product->precio_unitario }}€</p> <!-- Mostrar precio formateado -->

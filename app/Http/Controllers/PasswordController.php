@@ -13,22 +13,38 @@ class PasswordController extends Controller
 
 
     public function processForgetPassword(Request $request)
-    {
-        //Valido
-        $request->validate([
-            'email' => 'required|string',
-        ]);
+{
+    // Validar el campo de correo electrónico
+    $request->validate([
+        'email' => 'required|string|email',
+    ]);
 
-        $email = $request->input('email');
-        $nuevaContrasena = $this->generateNewPassword();
-        $hashedNuevaContrasena = Hash::make($nuevaContrasena);
+    // Obtener el correo electrónico del usuario
+    $email = $request->input('email');
 
-        //Actualizo la contraseña (hasheada)
-        User::where('email', $email)->update(['password' => $hashedNuevaContrasena]);
+    // Generar una nueva contraseña y hashearla
+    $nuevaContrasena = $this->generateNewPassword();
+    $hashedNuevaContrasena = Hash::make($nuevaContrasena);
 
-        $mensaje = "Tu nueva contraseña es: $nuevaContrasena";
+    // Actualizar la contraseña del usuario
+    $usuario = User::where('email', $email)->first();
+
+    if ($usuario) {
+        $usuario->update(['password' => $hashedNuevaContrasena]);
+
+        // Crear la URL para volver al login
+        $loginUrl = route('login'); // Asumiendo que tienes una ruta llamada 'login'
+
+        // Crear el mensaje con el enlace
+        $mensaje = "Tu nueva contraseña es: $nuevaContrasena. [Volver al login]($loginUrl)";
+
+        // Devolver la respuesta JSON
         return response()->json(['mensaje' => $mensaje], 200);
+    } else {
+        return response()->json(['mensaje' => 'Usuario no encontrado.'], 404);
     }
+}
+
 
     private function generateNewPassword($longitud = 12)
     {

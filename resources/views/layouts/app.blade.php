@@ -29,15 +29,22 @@
 
 <body>
     <div id="app">
-        <!-- Primera Navbar (Cuenta del usuario) -->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+                <!-- Marca y botón de hamburguesa -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="../imgs/logo_exchange.png" width="45%" height="45%">
+                    <img src="../imgs/logo_exchange.png" alt="Logo" width="45%" height="45%">
                 </a>
 
+                <!-- Botón de hamburguesa -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#firstNavbarContent" aria-controls="firstNavbarContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Contenido del menú que se despliega/colapsa -->
+                <div class="collapse navbar-collapse" id="firstNavbarContent">
                     <!-- Lado izquierdo del Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item mx-auto">
@@ -51,11 +58,8 @@
                         </li>
                     </ul>
 
-
                     <!-- Lado derecho del Navbar -->
                     <ul class="navbar-nav ms-auto">
-
-                        <!-- Links de autenticación -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -64,87 +68,76 @@
                             @endif
                         @else
                             @if (Auth::user()->admin)
-                                <!-- Solo para Administradores -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin/panel') }}">Panel de Administrador</a>
                                 </li>
                             @endif
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->nombre_usuario }}
                                 </a>
-
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('show-profile') }}">
-                                        {{ __('Ver Perfil') }}
-                                    </a>
-
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" href="{{ route('show-profile') }}">{{ __('Ver Perfil') }}</a>
+                                    <a class="dropdown-item" href="{{ route('my-products') }}">{{ __('Mis productos') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar sesión') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('my-products') }}">
-                                        {{ __('Mis productos') }}
-                                    </a>
-
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Cerrar sesión') }}</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-
                                 </div>
                             </li>
                         @endguest
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLanguage"
-                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Idioma
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownLanguage">
-                                <a class="dropdown-item" href="?lang=es">Español</a>
-                                <a class="dropdown-item" href="?lang=en">English</a>
-                                <a class="dropdown-item" href="?lang=en">Français</a>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
+
+
         <!-- Segundo Navbar (Categorías, Ofertas) -->
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="border-top: 1px solid #dee2e685;">
-            <div class="container">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Parte derecha -->
-                    <ul class="navbar-nav ms-auto">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="border-top: 1px solid #dee2e685;">
+    <div class="container-fluid py-1">
+        <div class="mx-auto d-flex align-items-center">
+            <button class="navbar-toggler py-2" id="navbarTogglerBtn" type="button" data-bs-toggle="collapse"
+                data-bs-target="#secondNavbarContent" aria-controls="secondNavbarContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-brand">
+                    Novedades
+                    <img src="../imgs/flecha_abajo.svg" width="16" height="16" alt="Flecha" width="7%" id="toggleArrow">
+                </span>
+            </button>
+        </div>
+
+        <!-- Contenido del menú que se despliega/colapsa -->
+        <div class="collapse navbar-collapse" id="secondNavbarContent">
+            <ul class="navbar-nav ms-auto">
+                @auth
+                    @if (Auth::user()->admin)
                         <li class="nav-item">
-                            @auth
-                                @if (Auth::user()->admin)
-                                    <a class="nav-link" href="{{ route('categories/index') }}">Categorías</a>
-                            </li>
-                            @endif
-                        @endauth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('popular') }}">{{ __('Lo más vendido') }}</a>
+                            <a class="nav-link" href="{{ route('categories/index') }}">Categorías</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('offers') }}">{{ __('Ofertas') }}</a>
-                        </li>
-                        @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('cart') }}">
-                                    <i class="fas fa-shopping-cart" style="color:#E37A3F;"></i>
-                                       
-                                </a>
-                            </li>
-                        @endauth
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                    @endif
+                @endauth
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('popular') }}">{{ __('Lo más vendido') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('offers') }}">{{ __('Ofertas') }}</a>
+                </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cart') }}">
+                            <i class="fas fa-shopping-cart" style="color:#E37A3F;"></i>
+                        </a>
+                    </li>
+                @endauth
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
         <main class="pb-4">
             @yield('content')
         </main>
@@ -249,6 +242,18 @@
 
 </html>
 
+
+
+<!-- Popup de cookies Inicio -->
+<div id="cookie-popup" class="cookie-popup">
+    <p class="mb-3">Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio
+        web, usted acepta nuestro uso de cookies de acuerdo con nuestra <a href="/cookies-policy">política de
+            cookies</a>.</p>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#Modalcookies">Configuración de cookies</button>
+    <button id="accept-cookies-btn" class="btn btn-primary">Aceptar</button>
+    <button id="reject-cookies-btn" class="btn btn-secondary">Rechazar</button>
+</div>
 
 <!--Modal Cookies-->
 <div class="modal fade" id="Modalcookies" tabindex="-1" aria-labelledby="Modalcookies-label" aria-hidden="true"
@@ -367,62 +372,65 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="guardarCookies()"
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="saveCookies()"
                     aria-label="Close">Guardar</button>
-                <button type="button" class="btn btn-primary" onclick="aceptarCookies()" data-bs-dismiss="modal"
+                <button type="button" class="btn btn-primary" onclick="acceptCookies()" data-bs-dismiss="modal"
                     aria-label="Close">Aceptar todas</button>
-                <button type="button" class="btn btn-primary" onclick="rechazarCookies()" data-bs-dismiss="modal"
+                <button type="button" class="btn btn-primary" onclick="rejectCookies()" data-bs-dismiss="modal"
                     aria-label="Close">Rechazar todas</button>
             </div>
         </div>
     </div>
 </div>
 
-<!--Script para Cookies-->  
+<!--Script para Cookies-->
 <script>
-
-window.onload = function () {
-    var dc = document.cookie;
-    var begin = dc.indexOf("memorandum_tecnica=");
-    if (begin == -1) {
-    document.getElementById("cookie-popup").style.display = "block";
+    window.onload = function() {
+        var dc = document.cookie;
+        var begin = dc.indexOf("exchange_cookie=");
+        if (begin == -1) {
+            document.getElementById("cookie-popup").style.display = "block";
+            hideCookiePopup();
+        } 
+        else{
+            document.getElementById("cookie-popup").style.display = "none";
+        }
     }
-    }
-    
-    function hideCookiePopup() {
-    document.getElementById("cookie-popup").style.display = "none"; // Oculta el banner
-    }
-    
 
 
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = "; expires=" + date.toUTCString(); // Usa UTC para la fecha de expiración
-    }
-    document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/"; // Asegúrate de que se guarda con la ruta correcta
+
+
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString(); // Usa UTC para la fecha de expiración
+        }
+        document.cookie = name + "=" + encodeURIComponent(value) + expires +
+        "; path=/"; // Asegúrate de que se guarda con la ruta correcta
     }
 
     function getCookie(name) {
-    var t = document.cookie;
-    var n = t.indexOf(" " + name + "=");
-    if (n == -1) {
-    n = t.indexOf(name + "=")
+        var t = document.cookie;
+        var n = t.indexOf(" " + name + "=");
+        if (n == -1) {
+            n = t.indexOf(name + "=")
+        }
+        if (n == -1) {
+            t = null
+        } else {
+            n = t.indexOf("=", n) + 1;
+            var r = t.indexOf(";", n);
+            if (r == -1) {
+                r = t.length
+            }
+            t = unescape(t.substring(n, r))
+        }
+        return t
     }
-    if (n == -1) {
-    t = null
-    } else {
-    n = t.indexOf("=", n) + 1;
-    var r = t.indexOf(";", n);
-    if (r == -1) {
-    r = t.length
-    }
-    t = unescape(t.substring(n, r))
-    }
-    return t
-    }
+
+
     // Función para ocultar el popup de cookies
     function hideCookiePopup() {
         document.getElementById('cookie-popup').style.display = 'none';
@@ -439,15 +447,15 @@ function setCookie(name, value, days) {
 
     // Función para rechazar las cookies
     function rejectCookies() {
-        setCookie("exchange_tecnica", false, 365);
+        setCookie("exchange_cookie", false, 365);
         setCookie("exchange_preferencias", false, 365);
         setCookie("exchange_analisis", false, 365);
         setCookie("exchange_publicidad", false, 365);
         hideCookiePopup();
     }
 
-    function saveCookies(){
-        setCookie("exchange_tecnica", true, 365);
+    function saveCookies() {
+        setCookie("exchange_cookie", true, 365);
         setCookie("exchange_preferencias", document.getElementById('check1').checked, 365);
         setCookie("exchange_analisis", document.getElementById('check2').checked, 365);
         setCookie("exchange_publicidad", document.getElementById('check3').checked, 365);
@@ -492,3 +500,20 @@ function setCookie(name, value, days) {
         });
     });
 </script>
+<!-- jQuery (necesario para usar el script de abajo) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#navbarTogglerBtn").click(function () {
+            $("#toggleArrow").toggleClass("rotate-animation");
+        });
+    });
+</script>
+
+<style>
+    .rotate-animation {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease;
+    }
+</style>
