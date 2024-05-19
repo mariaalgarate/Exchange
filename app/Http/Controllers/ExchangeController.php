@@ -81,12 +81,6 @@ class ExchangeController extends Controller
                 // Enviar el correo electrónico al destinatario
                 Mail::to($destinatario->email)->send(new TestLaravelMail($destinatario, $producto));
 
-                // Verificar si hubo fallos al enviar el correo
-                if (empty(Mail::failures())) {
-                    // Si no hubo fallos, establecer la variable de sesión
-                    $request->session()->put('correo_enviado', true);
-                }
-
                 // Redirigir con un mensaje de éxito
                 return redirect()->route('confirmExchange', ['id' => $producto->id])->with('success', '¡Producto para intercambio registrado con éxito!');
             } else {
