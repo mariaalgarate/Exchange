@@ -19,6 +19,8 @@
     <!-- Scripts -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+    <script src="https://unpkg.com/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+
 
     <script src="https://kit.fontawesome.com/61f09bd589.js" crossorigin="anonymous"></script>
 
@@ -29,7 +31,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
             <div class="container">
                 <!-- Marca y botón de hamburguesa -->
                 <a class="navbar-brand" href="{{ url('/') }}">
