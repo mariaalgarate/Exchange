@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('cantidad_producto');
             $table->double('precio_total');
             $table->double('cupon_descuento')->nullable();
-            $table->foreignId('id_producto')->constrained('productos');
+            $table->foreignId('id_producto')->constrained('productos')->onDelete('cascade');
             $table->foreignId('usuario_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
