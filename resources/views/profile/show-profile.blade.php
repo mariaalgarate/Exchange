@@ -12,7 +12,7 @@
                         <div class="col-md-4">
                             @if(auth()->user()->imagen)
                             <!-- Mostrar la imagen subida por el usuario -->
-                            <img src="{{ asset('storage/' . auth()->user()->imagen) }}" alt="{{ auth()->user()->nombre }}" class="img-fluid mb-3">
+                            <img src="{{ asset(auth()->user()->imagen) }}" alt="{{ auth()->user()->nombre }}" class="img-fluid mb-3">
                         @else
                             <!-- Mostrar una imagen predeterminada si el usuario no tiene una -->
                             <img src="{{ asset('../imgs/avatar.png') }}" alt="Avatar predeterminado" class="img-fluid mb-3">

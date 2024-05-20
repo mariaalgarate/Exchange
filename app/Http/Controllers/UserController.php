@@ -85,9 +85,10 @@ class UserController extends Controller{
         // Manejar la carga de la imagen si está presente
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
-            $nombreImagen = $imagen->getClientOriginalName();
-            $rutaImagen = $imagen->storeAs('user_images', $nombreImagen, 'public');
-            $user->imagen = $rutaImagen; // Asignar la ruta de la imagen al usuario
+            $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original
+            $rutaImagen = 'user_images/' . $nombreImagen; // Ruta relativa
+            $imagen->move(public_path('user_images'), $nombreImagen); // Mover a 'public/user_images'
+            $user->imagen = $rutaImagen; // Guardar la ruta de la imagen en la base de datos
         }
     
         // Asignación de campos específicos

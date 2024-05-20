@@ -50,8 +50,9 @@ class ProductController extends Controller
          if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
             $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original
-            $rutaImagen = $imagen->storeAs('product_images', $nombreImagen, 'public'); // Guardar en 'public/product_images'
-            $producto->imagen = $rutaImagen; // Guardar la ruta de la imagen
+            $rutaImagen = 'product_images/' . $nombreImagen; // Ruta relativa
+            $imagen->move(public_path('product_images'), $nombreImagen); // Mover a 'public/product_images'
+            $producto->imagen = $rutaImagen; // Guardar la ruta de la imagen en la base de datos
         }
         // Guardar el producto en la base de datos
         $producto->save();

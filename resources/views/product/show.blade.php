@@ -5,7 +5,7 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-md-6">
-                <img src="{{ asset('storage/' . $producto->imagen) }}" alt="Imagen Producto" style="width: 350px;">
+                <img src="{{ asset($producto->imagen) }}" alt="Imagen Producto" style="width: 350px;">
             </div>
             <div class="col-md-6">
                 <h2 style="color: var(--bs-primary);" id="titulo-producto">{{ $producto->nombre }}</h2>

@@ -73,7 +73,7 @@ $productos = Producto::all();
                 @foreach ($productos as $producto)
                     <!-- Recorrer y mostrar productos -->
                     <div class="product">
-                        <img src="{{ asset('storage/' . $producto->imagen) }}" alt="{{ asset('storage/' . $producto->imagen) }}" width="100px">
+                        <img src="{{ asset($producto->imagen) }}" alt="{{ asset($producto->imagen) }}" width="100px">
                         <h3>{{ $producto->nombre }}</h3>
                         <p>{{ $producto->descripcion }}</p>
                         <span class="price">{{ number_format($producto->precio_unitario, 2) }}€</span>

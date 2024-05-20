@@ -52,10 +52,10 @@ class AdminController extends Controller
         // Manejar la carga de la imagen
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
-            $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original del archivo
-            $rutaImagen = $imagen->storeAs('admin_images', $nombreImagen, 'public'); // Guardar en 'public/admin_images'
-
-            $admin->imagen = $rutaImagen; // Guardar la ruta en la base de datos
+            $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original
+            $rutaImagen = 'admin_images/' . $nombreImagen; // Ruta relativa
+            $imagen->move(public_path('admin_images'), $nombreImagen); // Mover a 'public/user_images'
+            $admin->imagen = $rutaImagen; // Guardar la ruta de la imagen en la base de datos
         }
 
         $admin->save();
