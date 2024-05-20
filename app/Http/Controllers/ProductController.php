@@ -93,49 +93,49 @@ class ProductController extends Controller
     
     public function update(Request $request, $id)
 {
-        // Valida los datos del formulario
-        $request->validate([
-            'nombre' => 'required|string',
-            'descripcion' => 'required|string',
-            'estado' => 'required|in:Muy bueno,Bueno,Desgastado',
-            'precio_unitario' => 'required|numeric',
-            'stock' => 'required|integer',
-            'cantidad' => 'required|integer',
-            'transaccion' => 'required|in:Intercambio,Venta,Ambas',
-            'imagen' => 'nullable|image|max:2048',
-           
-           
-        ]);
-     
-        // Encuentra el producto por su ID
-        $producto = Producto::findOrFail($id);
+    // Valida los datos del formulario
+    $request->validate([
+        'nombre' => 'required|string',
+        'descripcion' => 'required|string',
+        'estado' => 'required|in:Muy Bueno,Bueno,Desgastado',
+        'precio_unitario' => 'required|numeric',
+        'stock' => 'required|integer',
+        'cantidad' => 'required|integer',
+        'transaccion' => 'required|in:Venta,Intercambio,Ambas',
+        'imagen' => 'nullable|image|max:2048',
+    ]);
 
-        //Guardar la img
-         // Manejar la carga de la imagen si está presente
-         if ($request->hasFile('imagen')) {
-            $imagen = $request->file('imagen');
-            $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original
-            $rutaImagen = $imagen->storeAs('product_images', $nombreImagen, 'public'); // Guardar en 'public/product_images'
-            $producto->imagen = $rutaImagen; // Guardar la ruta de la imagen
-        }
+    // Encuentra el producto por su ID
+    $producto = Producto::findOrFail($id);
 
-        // Actualiza los datos del producto con los datos recibidos del formulario
-        $producto->nombre = $request->nombre;
-        $producto->descripcion = $request->descripcion;
-        $producto->estado = $request->estado;
-        $producto->precio_unitario = $request->precio_unitario;
-        $producto->stock = $request->stock;
-        $producto->cantidad = $request->cantidad;
-        $producto->transaccion = $request->transaccion;
+    // Manejar la carga de la imagen si está presente
+    if ($request->hasFile('imagen')) {
+        $imagen = $request->file('imagen');
+        $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original
+        $rutaImagen = $imagen->storeAs('product_images', $nombreImagen, 'public'); // Guardar en 'public/product_images'
+        $producto->imagen = $rutaImagen; // Guardar la ruta de la imagen
+    }
 
-       
-   
-        $producto->save();
+    // Actualiza los datos del producto con los datos recibidos del formulario
+    $producto->nombre = $request->nombre;
+    $producto->descripcion = $request->descripcion;
+    $producto->estado = $request->estado;
+    $producto->precio_unitario = $request->precio_unitario;
+    $producto->stock = $request->stock;
+    $producto->cantidad = $request->cantidad;
+    $producto->transaccion = $request->transaccion;
 
-        // Redirige a alguna página después de guardar los cambios
-        return redirect()->route('my-products')->with('success', '¡Producto actualizado exitosamente!');
+    // Guardar las categorías seleccionadas
+    if ($request->has('categorias')) {
+        $producto->categorias()->sync($request->categorias);
+    }
 
+    $producto->save();
+
+    // Redirige a alguna página después de guardar los cambios
+    return redirect()->route('my-products')->with('success', '¡Producto actualizado exitosamente!');
 }
+
 
 
         public function exploreProducts() {

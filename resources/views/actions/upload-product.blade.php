@@ -13,7 +13,8 @@ $categorias = Categoria::all();
                 <div class="card-header bg-primary text-white">{{ __('Subir Producto') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('upload-product') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('update-product', ['id' => $producto->id]) }}" enctype="multipart/form-data">
+
                         @csrf
 
                         <div class="row mb-3">
