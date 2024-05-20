@@ -86,7 +86,12 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $producto = Producto::findOrFail($id);
+        
+        // Eliminar las reseñas asociadas
+        $producto->resenas()->delete();
     
+        // Eliminar los registros en la tabla 'pedidos' que referencian el producto a través de 'pagos'
+        DB::table('pedidos')->where('id_producto', $id)->delete();
         // Eliminar referencias en carritos
         DB::table('carritos')->where('id_producto', $id)->delete();
     
