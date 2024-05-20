@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Mail\TestLaravelMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\DB;
+
 
 
 class ProductController extends Controller
@@ -84,7 +86,11 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $producto = Producto::findOrFail($id);
-        $producto->resenas()->delete();
+    
+        // Eliminar referencias en carritos
+        DB::table('carritos')->where('id_producto', $id)->delete();
+    
+        // Ahora puedes eliminar el producto
         $producto->delete();
     
         return redirect()->route('my-products')->with('success', '¡Producto eliminado exitosamente!');
