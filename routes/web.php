@@ -200,6 +200,7 @@ Route::middleware(['auth'])->group(function () {
     //Editar y actualizar producto
     Route::get('/edit-product/{id}', [ProductController::class, 'edit'])->name('edit-product');
     Route::post('/edit-product/{id}', [ProductController::class, 'update'])->name('update-product');
+    
     /*Ruta de la subida del producto*/
     Route::get('/upload-product', function () {
         return view('actions/upload-product');
