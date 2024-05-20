@@ -12,44 +12,55 @@ $categorias = Categoria::all();
                 <div class="card-header">{{ __('Editar Producto') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('edit-product', ['id' => $producto->id]) }}">
-                        @csrf                        
-                        <label for="nombre">Nombre del producto</label>
-                        <input type="text" id="nombre" name="nombre" value="{{ $producto->nombre }}" >
-
-                        <label for="descripcion">Descripcion:</label>
-                        <input type="textarea" id="descripcion" name="descripcion" value="{{ $producto->descripcion }}">
-
-                        
-                        <div class="mb-3">
-                            <label for="imagen" class="form-label">{{ __('Imagen') }}</label>
-                            <input type="file" class="form-control" id="imagen" name="imagen" value="{{ $producto->imagen }}" required>
+                    <form method="POST" action="{{ route('edit-product', ['id' => $producto->id]) }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="nombre">Nombre del producto</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $producto->nombre }}">
                         </div>
-                        
 
-                        <label for="estado">Tipo:</label>
-                        <select id="estado" name="estado">
-                            <option value="Muy Bueno">Muy Bueno</option>
-                            <option value="Bueno">Bueno</option>
-                            <option value="Desgastado">Desgastado</option>
-                        </select>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion">{{ $producto->descripcion }}</textarea>
+                        </div>
 
-                        <label for="transaccion">Transacción:</label>
-                        <select id="transaccion" name="transaccion">
-                            <option value="Venta">Venta</option>
-                            <option value="Intercambio">Intercambio</option>
-                            <option value="Ambas">Ambas</option>
-                        </select>
+                        <div class="form-group">
+                            <label for="imagen" class="form-label">{{ __('Imagen') }}</label>
+                            <input id="imagen" type="file" class="form-control-file" name="imagen" required>
+                        </div>
 
-                        <label for="precio_unitario">Precio unitario:</label>
-                        <input type="number" id="precio_unitario" name="precio_unitario" value="{{ $producto->precio_unitario }}">
+                        <div class="form-group">
+                            <label for="estado">Tipo</label>
+                            <select class="form-control" id="estado" name="estado">
+                                <option value="Muy Bueno" {{ $producto->estado == 'Muy Bueno' ? 'selected' : '' }}>Muy Bueno</option>
+                                <option value="Bueno" {{ $producto->estado == 'Bueno' ? 'selected' : '' }}>Bueno</option>
+                                <option value="Desgastado" {{ $producto->estado == 'Desgastado' ? 'selected' : '' }}>Desgastado</option>
+                            </select>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="transaccion">Transacción</label>
+                            <select class="form-control" id="transaccion" name="transaccion">
+                                <option value="Venta" {{ $producto->transaccion == 'Venta' ? 'selected' : '' }}>Venta</option>
+                                <option value="Intercambio" {{ $producto->transaccion == 'Intercambio' ? 'selected' : '' }}>Intercambio</option>
+                                <option value="Ambas" {{ $producto->transaccion == 'Ambas' ? 'selected' : '' }}>Ambas</option>
+                            </select>
+                        </div>
 
-                        <label for="stock">Stock:</label>
-                        <input type="number" id="stock" name="stock" value="{{ $producto->stock}}">
+                        <div class="form-group">
+                            <label for="precio_unitario">Precio unitario</label>
+                            <input type="number" class="form-control" id="precio_unitario" name="precio_unitario" value="{{ $producto->precio_unitario }}">
+                        </div>
 
-                        <label for="cantidad">Cantidad:</label>
-                        <input type="number" id="cantidad" name="cantidad" value="{{ $producto->cantidad }}">
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="number" class="form-control" id="stock" name="stock" value="{{ $producto->stock }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad" name="cantidad" value="{{ $producto->cantidad }}">
+                        </div>
 
                         <div class="form-group">
                             <label for="categorias">Categorías</label>
@@ -61,7 +72,6 @@ $categorias = Categoria::all();
                                 @endforeach
                             </select>
                         </div>
-
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
