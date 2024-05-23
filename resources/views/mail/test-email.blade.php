@@ -10,10 +10,12 @@
     Hola {{ $destinatario->nombre }},
     Alguien está interesado en intercambiar el producto "{{ $producto->nombre }}" contigo.
     Por favor, revisa la aplicación para más detalles.
+    Gracias,
+    Exchange
 
-    <div style="margin-top: 20px;">
-        <a href="{{ route('show', ['id' => $producto->id]) }}" style="background-color: #ff7b00; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 5px; display: inline-block;">Ver Producto</a>
-    </div>
+    @slot('mail::button', ['url' => route('show', ['id' => $producto->id])])
+        Ver Producto
+    @slot
 
     {{-- Footer --}}
     @slot('footer')
