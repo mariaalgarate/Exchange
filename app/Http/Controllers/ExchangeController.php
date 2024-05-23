@@ -56,12 +56,13 @@ class ExchangeController extends Controller
         $producto->transaccion = 'Intercambio';
         $producto->usuario_id = auth()->id(); // ID del usuario autenticado
 
-        // Guardar la imagen y asignar la ruta al producto
+        // Manejar la carga de la imagen si está presente
         if ($request->hasFile('imagen')) {
-            $path = $request->file('imagen')->store('imgs/', 'public');
-            $producto->imagen = $path; // Asignar la ruta de la imagen
+            $imagen = $request->file('imagen');
+            $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original
+            $rutaImagen = $imagen->storeAs('product_images', $nombreImagen, 'public'); // Guardar en 'public/product_images'
+            $producto->imagen = $rutaImagen; // Guardar la ruta de la imagen
         }
-
         // Guardar el producto
         $producto->save();
 
