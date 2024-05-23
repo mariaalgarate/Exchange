@@ -56,7 +56,8 @@
                         </div>
                         <p class="font-weight-bold text-center text-muted">O inicia sesión con</p>
                     <div class="d-flex justify-content-around">
-                    <button type="submit" class="btn btn-sin-funcionamiento flex-grow-1" style="margin-right: 10px;"><i class="fa-brands fa-google lead mr-2"></i> Google</button>
+                    <button type="submit" class="btn btn-sin-funcionamiento flex-grow-1" style="margin-right: 10px; cursor: none;
+                    color: #333; background-color: #666;"><i class="fa-brands fa-google lead mr-2"></i> Google</button>
                     <button type="submit" class="btn btn-sin-funcionamiento flex-grow-1" style="margin-left: 10px;"><i class="fa-brands fa-facebook-f lead mr-2"></i> Facebook</button>
                 </div>
                     </form>
