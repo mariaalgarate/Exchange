@@ -40,9 +40,9 @@ class ExchangeController extends Controller
             'nombre' => 'required|string',
             'descripcion' => 'required|string',
             'estado' => 'required|in:Muy Bueno,Bueno,Desgastado',
-            'precio_unitario' => 'required|numeric',
-            'cantidad' => 'required|integer|min:1',
-            'imagen' => 'required|file',
+            'precio_unitario' => 'required|numeric|min:0|max:10000',
+            'cantidad' => 'required|integer|min:0|max:2',
+            'imagen' => 'required|image|max:2048',
         ]);
 
         // Crear un nuevo producto

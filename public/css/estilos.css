@@ -737,4 +737,16 @@ a {
     transition: transform 0.5s ease;
 }
 
+.btn-sin-funcionamiento{
+cursor: none;
+color: #333;
+background-color: #666;
+}
+
+.btn-sin-funcionamiento:hover{
+    cursor: auto;
+    color: #333;
+    background-color: #666;  
+}
+
 

@@ -246,16 +246,7 @@
 
 
 
-<!-- Popup de cookies Inicio -->
-<div id="cookie-popup" class="cookie-popup">
-    <p class="mb-3">Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio
-        web, usted acepta nuestro uso de cookies de acuerdo con nuestra <a href="/cookies-policy">política de
-            cookies</a>.</p>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-        data-bs-target="#Modalcookies">Configuración de cookies</button>
-    <button id="accept-cookies-btn" class="btn btn-primary">Aceptar</button>
-    <button id="reject-cookies-btn" class="btn btn-secondary">Rechazar</button>
-</div>
+
 
 <!--Modal Cookies-->
 <div class="modal fade" id="Modalcookies" tabindex="-1" aria-labelledby="Modalcookies-label" aria-hidden="true"
@@ -387,88 +378,32 @@
 
 <!--Script para Cookies-->
 <script>
-    window.onload = function() {
-        var dc = document.cookie;
-        var begin = dc.indexOf("exchange_cookie=");
-        if (begin == -1) {
-            document.getElementById("cookie-popup").style.display = "block";
-            hideCookiePopup();
-        } 
-        else{
-            document.getElementById("cookie-popup").style.display = "none";
-        }
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+        // Verifica si la cookie ya está establecida
+        const cookieValue = document.cookie.split('; ').find(row => row.startsWith('cookies_accepted='));
+        const cookiePopup = document.getElementById("cookie-popup");
 
-
-
-
-    function setCookie(name, value, days) {
-        var expires = "";
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString(); // Usa UTC para la fecha de expiración
-        }
-        document.cookie = name + "=" + encodeURIComponent(value) + expires +
-        "; path=/"; // Asegúrate de que se guarda con la ruta correcta
-    }
-
-    function getCookie(name) {
-        var t = document.cookie;
-        var n = t.indexOf(" " + name + "=");
-        if (n == -1) {
-            n = t.indexOf(name + "=")
-        }
-        if (n == -1) {
-            t = null
+        if (!cookieValue) {
+            // Muestra el popup de cookies si no está aceptada ni rechazada
+            cookiePopup.style.display = "block";
         } else {
-            n = t.indexOf("=", n) + 1;
-            var r = t.indexOf(";", n);
-            if (r == -1) {
-                r = t.length
-            }
-            t = unescape(t.substring(n, r))
+            // Oculta el popup de cookies si la cookie existe
+            cookiePopup.style.display = "none";
         }
-        return t
-    }
 
+        // Cuando el usuario acepta las cookies
+        document.getElementById("accept-cookies-btn").addEventListener("click", function () {
+            document.cookie = "cookies_accepted=true; path=/; max-age=" + 60 * 60 * 24 * 365;
+            cookiePopup.style.display = "none";
+        });
 
-    // Función para ocultar el popup de cookies
-    function hideCookiePopup() {
-        document.getElementById('cookie-popup').style.display = 'none';
-    }
-
-    // Función para aceptar las cookies
-    function acceptCookies() {
-        setCookie("exchange_tecnica", true, 365);
-        setCookie("exchange_preferencias", true, 365);
-        setCookie("exchange_analisis", true, 365);
-        setCookie("exchange_publicidad", true, 365);
-        hideCookiePopup();
-    }
-
-    // Función para rechazar las cookies
-    function rejectCookies() {
-        setCookie("exchange_cookie", false, 365);
-        setCookie("exchange_preferencias", false, 365);
-        setCookie("exchange_analisis", false, 365);
-        setCookie("exchange_publicidad", false, 365);
-        hideCookiePopup();
-    }
-
-    function saveCookies() {
-        setCookie("exchange_cookie", true, 365);
-        setCookie("exchange_preferencias", document.getElementById('check1').checked, 365);
-        setCookie("exchange_analisis", document.getElementById('check2').checked, 365);
-        setCookie("exchange_publicidad", document.getElementById('check3').checked, 365);
-        hideCookiePopup();
-    }
-
-    // Event listeners para los botones de aceptar y rechazar cookies
-    document.getElementById('accept-cookies-btn').addEventListener('click', acceptCookies);
-    document.getElementById('reject-cookies-btn').addEventListener('click', rejectCookies);
+        // Cuando el usuario rechaza las cookies
+        document.getElementById("reject-cookies-btn").addEventListener("click", function () {
+            document.cookie = "cookies_accepted=false; path=/; max-age=" + 60 * 60 * 24 * 365;
+            cookiePopup.style.display = "none";
+        });
+    });
 </script>
-
 
 <!--Script para Menú Desplegable-->
 <script>
@@ -519,3 +454,16 @@
         transition: transform 0.3s ease;
     }
 </style>
+
+
+
+<!-- Popup de cookies Inicio -->
+<div id="cookie-popup" class="cookie-popup">
+    <p class="mb-3">Este sitio web utiliza cookies para mejorar la experiencia del usuario. Al utilizar nuestro sitio
+        web, usted acepta nuestro uso de cookies de acuerdo con nuestra <a href="/cookies-policy">política de
+            cookies</a>.</p>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#Modalcookies">Configuración de cookies</button>
+    <button id="accept-cookies-btn" class="btn btn-primary">Aceptar</button>
+    <button id="reject-cookies-btn" class="btn btn-secondary">Rechazar</button>
+</div>

@@ -43,18 +43,7 @@
                                 @endif
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Recuérdame') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
+                        
                         <div class="row mb-0">
                             <div class="mb-4">
                                 <button type="submit" class="btn btn-primary w-100">
@@ -67,8 +56,8 @@
                         </div>
                         <p class="font-weight-bold text-center text-muted">O inicia sesión con</p>
                     <div class="d-flex justify-content-around">
-                    <button type="submit" class="btn btn-primary flex-grow-1" style="margin-right: 10px;"><i class="fa-brands fa-google lead mr-2"></i> Google</button>
-                    <button type="submit" class="btn btn-primary flex-grow-1" style="margin-left: 10px;"><i class="fa-brands fa-facebook-f lead mr-2"></i> Facebook</button>
+                    <button type="submit" class="btn btn-sin-funcionamiento flex-grow-1" style="margin-right: 10px;"><i class="fa-brands fa-google lead mr-2"></i> Google</button>
+                    <button type="submit" class="btn btn-sin-funcionamiento flex-grow-1" style="margin-left: 10px;"><i class="fa-brands fa-facebook-f lead mr-2"></i> Facebook</button>
                 </div>
                     </form>
                     
