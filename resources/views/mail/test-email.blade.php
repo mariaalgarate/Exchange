@@ -13,9 +13,9 @@
     Gracias,
     Exchange
 
-    @slot('mail::button', ['url' => route('show', ['id' => $producto->id])])
+    @component('mail::button', ['url' => route('show', ['id' => $producto->id])])
         Ver Producto
-    @slot
+    @endcomponent
 
     {{-- Footer --}}
     @slot('footer')
