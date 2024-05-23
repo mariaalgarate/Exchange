@@ -8,17 +8,31 @@
                     <div class="card-header">Rellene el formulario de su producto para el Intercambio</div>
                     <div class="card-body">
                         @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                        <form  method="POST" action="{{ route('uploadExchange', ['id' => $producto->id]) }}" enctype="multipart/form-data">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('uploadExchange', ['id' => $producto->id]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('POST')
+
                             <div class="row mb-3">
                                 <label for="nombre" class="col-md-4 col-form-label text-md-end">{{ __('Nombre del Producto') }}</label>
                                 <div class="col-md-6">
@@ -30,6 +44,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="descripcion" class="col-md-4 col-form-label text-md-end">{{ __('Descripción') }}</label>
                                 <div class="col-md-6">
@@ -41,6 +56,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="imagen" class="col-md-4 col-form-label text-md-end">{{ __('Subir Foto') }}</label>
                                 <div class="col-md-6">
@@ -52,6 +68,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="precio_unitario" class="col-md-4 col-form-label text-md-end">{{ __('Precio') }}</label>
                                 <div class="col-md-6">
@@ -63,13 +80,14 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="estado" class="col-md-4 col-form-label text-md-end">{{ __('Estado') }}</label>
                                 <div class="col-md-6">
                                     <select id="estado" class="form-select @error('estado') is-invalid @enderror" name="estado" required>
-                                        <option value="Muy bueno">Muy bueno</option>
-                                        <option value="Bueno">Bueno</option>
-                                        <option value="Desgastado">Desgastado</option>
+                                        <option value="Muy Bueno" {{ old('estado') == 'Muy Bueno' ? 'selected' : '' }}>Muy bueno</option>
+                                        <option value="Bueno" {{ old('estado') == 'Bueno' ? 'selected' : '' }}>Bueno</option>
+                                        <option value="Desgastado" {{ old('estado') == 'Desgastado' ? 'selected' : '' }}>Desgastado</option>
                                     </select>
                                     @error('estado')
                                         <span class="invalid-feedback" role="alert">
@@ -78,6 +96,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="cantidad" class="col-md-4 col-form-label text-md-end">{{ __('Cantidad') }}</label>
                                 <div class="col-md-6">
@@ -89,7 +108,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             <button type="submit" class="btn btn-primary">Registrar Producto</button>
                         </form>
                     </div>
