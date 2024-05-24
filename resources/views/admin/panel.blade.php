@@ -34,13 +34,13 @@
         <!-- Otras Funcionalidades -->
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-cogs"></i> Otras Funcionalidades
+                <div class="card-header" style="background-color:#cdcdcd;">
+                    <i class="fas fa-cogs" style="background-color: #686868;"></i> Otras Funcionalidades
                 </div>
                 <div class="card-body">
                     <!-- Enlaces a otras funciones administrativas -->
-                    <a href="#" class="btn btn-primary px-3">Configuraciones</a>
-                    <a href="#" class="btn btn-secondary">Ver Reportes</a>
+                    <a href="#" class="btn btn-secondary px-3" style="background-color: #686868; cursor:auto;">Configuraciones</a>
+                    <a href="#" class="btn btn-secondary" style="background-color: #686868; cursor:auto;">Ver Reportes</a>
                 </div>
             </div>
         </div>
