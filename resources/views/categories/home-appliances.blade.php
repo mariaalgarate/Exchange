@@ -27,19 +27,7 @@
     .product-section {
         padding: 20px;
     }
-
-    .product-card {
-        margin-bottom: 20px;
-    }
-
-    .product-card img {
-        max-height: 200px;
-        object-fit: cover;
-    }
-
-    .card-title, .card-text {
-        margin-bottom: 10px;
-    }
+    
 </style>
 
 
