@@ -41,6 +41,12 @@
     .card-text {
         flex-grow: 1; /* Hacer que el texto crezca para llenar el espacio restante */
     }
+
+      /* Ajustar tamaño de las imágenes */
+      .card-img-top {
+        width: 150px;
+        height: auto;
+    }
 </style>
 <main class="pb-4">
     <div class="banner">
