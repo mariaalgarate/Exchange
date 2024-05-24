@@ -36,19 +36,18 @@ $productos = Producto::all();
     </div>
 
     <!-- Lista de productos -->
-    <div class="row mt-5 px-5">
-        <!-- El bucle foreach debería estar dentro de un contenedor adecuado -->
-        @foreach ($productos as $producto)
-            <div class="col-md-3"> <!-- Corregido el nivel del div -->
-                <div class="deal">
-                    <!-- Para las imágenes, es importante tener rutas válidas -->
+    <div class="container py-5 mb-5">
+        <div class="product-grid">
+            <!-- El bucle foreach debería estar dentro de un contenedor adecuado -->
+            @foreach ($productos as $producto)
+                <div class="product">
                     <img src="{{ asset($producto->imagen) }}" alt="{{ asset($producto->imagen) }}" width="100px">
                     <h3>{{ $producto->nombre }}</h3>
-                    <span class="badge bg-danger">¡A punto de agotarse!</span>
-                    <a href="{{ route('show', ['id' => $producto->id]) }}" class="btn">Ver oferta</a> <!-- Asegúrate de usar clases consistentes -->
+                        <span class="badge bg-danger">¡A punto de agotarse!</span>
+                        <a href="{{ route('show', ['id' => $producto->id]) }}" class="btn">Ver oferta</a> <!-- Asegúrate de usar clases consistentes -->
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
 
     <!-- Banner de Ofertas destacadas -->
