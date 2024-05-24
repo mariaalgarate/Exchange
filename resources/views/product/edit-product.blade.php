@@ -40,14 +40,11 @@
                             @enderror
                         </div>
                         <br>
-                        <div class="form-group">
-                            <label for="imagen" class="form-label">{{ __('Imagen') }}</label>
-                            <input id="imagen" type="file" class="form-control-file @error('imagen') is-invalid @enderror" name="imagen">
-                            @error('imagen')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <div class="row mb-3">
+                            <label for="imagen" class="col-md-4 col-form-label text-md-end">Imagen (opcional):</label>
+                            <div class="col-md-6">
+                            <input type="file" class="form-control" name="imagen">
+                        </div>
                         </div>
                         <br>
                         <div class="form-group">
