@@ -50,16 +50,9 @@ $categorias = Categoria::all();
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="imagen" class="col-md-4 col-form-label text-md-end">{{ __('Subir Foto') }}</label>
-                            <div class="col-md-6">
-                                <input id="imagen" type="file" class="form-control-file @error('imagen') is-invalid @enderror" name="imagen" required>
-                                @error('imagen')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="form-group">
+                            <label for="imagen">Imagen (opcional):</label>
+                            <input type="file" class="form-control" name="imagen">
                         </div>
 
                         <div class="row mb-3">
