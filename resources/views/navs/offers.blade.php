@@ -85,19 +85,7 @@ $productos = Producto::all();
         </div>
     </div>
 
-    <!-- Banner de Ofertas destacadas -->
-    <div class="container-fluid d-flex justify-content-center align-items-center exchange p-0 mt-5"> <!-- Se agregó margen superior -->
-        <div class="container-fluid mx-5 bg-glass">
-            <div class="row">
-                <div class="col-md-8 text-center d-flex flex-column justify-content-center align-items-center">
-                    <h3 class="fw-bold mb-3">Descubre nuestras ofertas más destacadas de cada categoría deslizando hacia abajo</h3> <!-- Ajustes de formato -->
-                </div>
-                <div class="col-md-4 d-flex justify-content-center align-items-center">
-                    <img class="img-fluid" src="{{ asset('imgs/logo_exchange.png') }}" alt="Logo Exchange"> <!-- Corregido con `asset` y `alt` -->
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 </main>
 @endsection
