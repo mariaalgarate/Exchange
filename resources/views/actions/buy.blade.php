@@ -1,53 +1,73 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        /* Estilos personalizados */
-        .banner {
-            position: relative;
-            height: 300px;
-            background: url('https://img.freepik.com/foto-gratis/simbolo-tienda-compras-regalo-tecnologia-cuaderno_1418-12.jpg?t=st=1714566525~exp=1714570125~hmac=f328eca7503539667ae9d685d84af2bf731f657248c51635feb390ccef191538&w=996') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
+<style>
+    /* Estilos personalizados */
+    .banner {
+        position: relative;
+        height: 300px;
+        background: url('https://img.freepik.com/foto-gratis/simbolo-tienda-compras-regalo-tecnologia-cuaderno_1418-12.jpg?t=st=1714566525~exp=1714570125~hmac=f328eca7503539667ae9d685d84af2bf731f657248c51635feb390ccef191538&w=996') center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
 
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-    </style>
-    <main class="pb-4">
-        <div class="banner">
-            <div class="banner-overlay">
-                <h1 class="text-overlay">¿Cómo puedo comprar a través de Exchange?</h1>
-            </div>
+    .banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .card {
+        height: 100%; /* Ajustar todas las tarjetas a la misma altura */
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+        flex-grow: 1; /* Hacer que el texto crezca para llenar el espacio restante */
+    }
+</style>
+<main class="pb-4">
+    <div class="banner">
+        <div class="banner-overlay">
+            <h1 class="text-overlay">¿Cómo puedo comprar a través de Exchange?</h1>
         </div>
+    </div>
 
-        <!--Nuestros productos-->
-        <div class="container py-5">
-            <h2>Explora nuestra selección de productos</h2>
-            <div class="row mt-5">
-                @foreach ($productos as $producto)
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset($producto->imagen) }}" alt="{{ asset($producto->imagen) }}" width="100px">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $producto->nombre }}</h5>
-                                <p class="card-text">{{ $producto->descripcion }}</p>
-                                <p class="card-text">Precio: {{ $producto->precio_unitario }}</p>
-                                <a href="{{ route('show', ['id' => $producto->id]) }}" class="stretched-link"></a>
-                            </div>
+    <!--Nuestros productos-->
+    <div class="container py-5">
+        <h2>Explora nuestra selección de productos</h2>
+        <div class="row mt-5">
+            @foreach ($productos as $producto)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset($producto->imagen) }}" alt="{{ asset($producto->imagen) }}" class="card-img-top" width="100px">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $producto->nombre }}</h5>
+                            <p class="card-text">{{ $producto->descripcion }}</p>
+                            <p class="card-text">Precio: {{ $producto->precio_unitario }}</p>
+                            <a href="{{ route('show', ['id' => $producto->id]) }}" class="stretched-link"></a>
                         </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
+    </div>
 
         <!--Por qué comprar en Exchange-->
         <div class="container py-5">
