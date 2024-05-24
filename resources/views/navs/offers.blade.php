@@ -79,7 +79,7 @@ $productos = Producto::all();
                     <img src="{{ asset($producto->imagen) }}" alt="{{ asset($producto->imagen) }}" width="100px">
                     <h3>{{ $producto->nombre }}</h3>
                         <span class="badge bg-danger">¡A punto de agotarse!</span>
-                        <a href="{{ route('show', ['id' => $producto->id]) }}" class="btn">Ver oferta</a> <!-- Asegúrate de usar clases consistentes -->
+                        <a href="{{ route('show', ['id' => $producto->id]) }}" class="btn btn-primary">Ver oferta</a> <!-- Asegúrate de usar clases consistentes -->
                 </div>
             @endforeach
         </div>
