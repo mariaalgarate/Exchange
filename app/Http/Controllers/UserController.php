@@ -45,12 +45,18 @@ class UserController extends Controller{
         $user->password = Hash::make($request->password); // Cifrar la contraseña
         $user->admin = false; // No es administrador por defecto
 
-        // Manejar la carga de la imagen si está presente
+      // Manejar la carga de la imagen si está presente
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
             $nombreImagen = $imagen->getClientOriginalName(); // Obtener el nombre original
-            $rutaImagen = $imagen->storeAs('user_images', $nombreImagen, 'public'); // Guardar en 'public/user_images'
-            $user->imagen = $rutaImagen; // Guardar la ruta de la imagen
+            $rutaImagen = 'user_images/' . $nombreImagen; // Ruta relativa
+            $imagen->move(public_path('user_images'), $nombreImagen); // Mover a 'public/user_images'
+            $user->imagen = $rutaImagen; // Guardar la ruta de la imagen en la base de datos
+        }
+        else {
+            // Definir la imagen por defecto
+            $imagenPorDefecto = '../imgs/avatar.png';
+            $user->imagen = $imagenPorDefecto;
         }
 
         // Guardar el usuario en la base de datos

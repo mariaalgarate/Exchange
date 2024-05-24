@@ -54,7 +54,7 @@ $categorias = Categoria::all();
                             <label for="imagen" class="col-md-4 col-form-label text-md-end">Imagen (opcional):</label>
                             <div class="col-md-6">
                             <input type="file" class="form-control" name="imagen">
-                        </div>
+                            </div>
                         </div>
 
                         <div class="row mb-3">

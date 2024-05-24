@@ -156,7 +156,7 @@
                         @if(!isset($imagen))
                             <div class="form-group">
                                 <label>Imagen por defecto:</label>
-                                <img src="{{ asset('../imgs/avatar.png') }}" alt="Imagen por defecto">
+                                <img src="{{ asset('../imgs/avatar.png') }}" alt="Imagen por defecto" style="width: 150px;">
                             </div>
                         @endif
 

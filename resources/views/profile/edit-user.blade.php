@@ -59,7 +59,7 @@
 
                         <div class="mb-3">
                             <label for="imagen" class="form-label">{{ __('Imagen') }}</label>
-                            <input type="file" class="form-control" id="imagen" name="imagen" value="{{ auth()->user()->imagen }}" required>
+                            <input type="file" class="form-control" id="imagen" name="imagen" value="{{ auth()->user()->imagen }}">
                         </div>
 
                         <!-- Agrega aquí los demás campos del formulario -->
