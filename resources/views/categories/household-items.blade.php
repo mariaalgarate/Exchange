@@ -58,6 +58,26 @@
                         </ul>
                     </div>
                     <div class="col-md-9 product-section mt-5">
+                        <!-- Novedades -->
+                        <h2>Novedades</h2>
+                        <div class="row mt-4">
+                            <!-- Producto 1 -->
+                            @foreach ($productos as $producto)
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="{{ asset($producto->imagen) }}" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $producto->nombre }}</h5>
+                                        <p class="card-text">{{ $producto->descripcion }}</p>
+                                        <p class="card-text">Precio: {{ number_format($producto->precio_unitario, 2) }}€</p>
+                                        <a href="{{ route('show', ['id' => $producto->id]) }}" class="btn btn-primary">Ver Producto</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div> 
+
+                        <div class="col-md-9 product-section mt-5">
                         <!-- Lo más vendido -->
                         <h2>Lo más vendido (0-20€)</h2>
                     
