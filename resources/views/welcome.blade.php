@@ -103,43 +103,76 @@
     <div class="row mt-5">
         <div class="col-12">
             <h3 class="text-center">Lo mejor de Exchange</h3>
+            <p class="text-center">Explora nuestras categorías para encontrar los productos que necesitas.</p>
         </div>
     </div>
     <div class="row justify-content-center mt-4 text-center">
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <a href="{{ route('categories/technology') }}" target="_blank" class="text-decoration-none">
-                <div class="circle">
-                    <img src="../imgs/productos-tecnologicos.jpg" class="img-fluid" alt="Imagen 1">
-                    <div class="circle-overlay">Electrónica</div>
+                <div class="card">
+                    <img src="../imgs/productos-tecnologicos.jpg" class="card-img-top img-fluid" alt="Electrónica">
+                    <div class="card-body">
+                        <h5 class="card-title">Electrónica</h5>
+                        <p class="card-text">Encuentra los últimos dispositivos y gadgets.</p>
+                    </div>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <a href="{{ route('categories/home-appliances') }}" target="_blank" class="text-decoration-none">
-                <div class="circle">
-                    <img src="../imgs/productos-electrodomesticos.jpg" class="img-fluid" alt="Imagen 2">
-                    <div class="circle-overlay">Electrodomésticos</div>
+                <div class="card">
+                    <img src="../imgs/productos-electrodomesticos.jpg" class="card-img-top img-fluid" alt="Electrodomésticos" style="height:180px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Electrodomésticos</h5>
+                        <p class="card-text">Encuentra lo mejor para tu hogar y cocina.</p>
+                    </div>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <a href="{{ route('categories/clothes') }}" target="_blank" class="text-decoration-none">
-                <div class="circle">
-                    <img src="../imgs/productos-ropa.jpg" class="img-fluid" alt="Imagen 3">
-                    <div class="circle-overlay">Ropa</div>
+                <div class="card">
+                    <img src="../imgs/productos-ropa.jpg" class="card-img-top img-fluid" alt="Ropa">
+                    <div class="card-body">
+                        <h5 class="card-title">Ropa</h5>
+                        <p class="card-text">Moda y estilo para todas las edades.</p>
+                    </div>
                 </div>
             </a>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <a href="{{ route('categories/household-items') }}" target="_blank" class="text-decoration-none">
-                <div class="circle">
-                    <img src="../imgs/productos-hogar.jpg" class="img-fluid" alt="Imagen 4">
-                    <div class="circle-overlay">Hogar</div>
+                <div class="card">
+                    <img src="../imgs/productos-hogar.jpg" class="card-img-top img-fluid" alt="Hogar">
+                    <div class="card-body">
+                        <h5 class="card-title">Hogar</h5>
+                        <p class="card-text">Artículos esenciales para tu casa.</p>
+                    </div>
                 </div>
             </a>
         </div>
     </div>
 </div>
+
+<style>
+    .card {
+        border: none;
+        overflow: hidden;
+    }
+    .card-img-top {
+        border-top-left-radius: calc(0.25rem - 1px);
+        border-top-right-radius: calc(0.25rem - 1px);
+    }
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+    .card-text {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+</style>
+
 
     </main>
 @endsection

@@ -182,10 +182,14 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('query'); // Obtener el término de búsqueda
-        $products = Producto::where('nombre', 'LIKE', '%' . $query . '%')->get(); // Buscar productos cuyo nombre contiene el término
+        // Obtener el término de búsqueda del formulario
+        $query = $request->input('query');
 
-        return view('product.search', ['products' => $products, 'query' => $query]);
+        // Realizar la búsqueda de productos que coincidan con el término
+        $productos = Producto::where('nombre', 'LIKE', '%' . $query . '%')->get();
+
+        // Pasar los resultados de la búsqueda a la vista
+        return view('product.search', ['productos' => $productos, 'query' => $query]);
     }
 
 
