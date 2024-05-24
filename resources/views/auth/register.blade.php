@@ -147,18 +147,11 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="imagen" class="col-md-4 col-form-label text-md-end">Imagen (opcional):</label>
-                            <input type="file" class="form-control" name="imagen">
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label">{{ __('Imagen') }}</label>
+                            <input type="file" class="form-control" id="imagen" name="imagen">
                         </div>
                         
-                        <!-- Mostrar imagen por defecto si no se proporciona ninguna imagen -->
-                        @if(!isset($imagen))
-                            <div class="form-group">
-                                <label>Imagen por defecto:</label>
-                                <img src="{{ asset('../imgs/avatar.png') }}" alt="Imagen por defecto" style="width: 150px;">
-                            </div>
-                        @endif
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Contraseña') }}</label>
