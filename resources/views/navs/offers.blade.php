@@ -1,4 +1,7 @@
-@extends('layouts.app')
+<?php
+use App\Models\Producto; // Corregido, asegúrate de que el nombre del modelo sea correcto
+$productos = Producto::all();
+?>@extends('layouts.app')
 
 @section('content')
 <main class="pb-4">
