@@ -76,7 +76,7 @@ $productos = Producto::all();
                         <img src="{{ asset($producto->imagen) }}" alt="{{ asset($producto->imagen) }}" width="100px">
                         <h3>{{ $producto->nombre }}</h3>
                         <p>{{ $producto->descripcion }}</p>
-                        <span class="price">{{ number_format($producto->precio_unitario, 2) }}€</span><br>
+                        <span class="price">{{ number_format($producto->precio_unitario, 2) }}€</span><br><br>
                         <!-- Precio formateado -->
                         <a href="{{ route('addToCart', ['id' => $producto->id]) }}" class="btn btn-primary">Agregar al carrito</a>
                     </div>
