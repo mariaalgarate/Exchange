@@ -54,10 +54,11 @@ class UserController extends Controller{
             $user->imagen = $rutaImagen; // Guardar la ruta de la imagen en la base de datos
         }
         else {
-            // Definir la imagen por defecto
-            $imagenPorDefecto = '../imgs/avatar.png';
-            $user->imagen = $imagenPorDefecto;
+            // Establecer una imagen por defecto
+            $rutaImagenPorDefecto = '../imgs/avatar.png'; // Ruta de la imagen por defecto
+            $user->imagen = $rutaImagenPorDefecto;
         }
+       
 
         // Guardar el usuario en la base de datos
         $user->save();
