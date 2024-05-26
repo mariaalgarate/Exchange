@@ -33,12 +33,12 @@
         display: flex;
         flex-direction: column;
         height: 100%;
+        min-height: 450px; /* Ajusta esta altura según tus necesidades */
     }
 
     .card-img-top {
-        width: 100%;
         height: 200px;
-        object-fit: contain;
+      
     }
 
     .card-body {
@@ -55,6 +55,11 @@
 
     .card-text {
         flex-grow: 1;
+        overflow: hidden; /* Ocultar el desbordamiento de texto */
+        text-overflow: ellipsis; /* Añadir puntos suspensivos (...) si el texto es demasiado largo */
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Número de líneas antes de truncar el texto */
+        -webkit-box-orient: vertical;
     }
 
     .btn {
@@ -151,6 +156,5 @@
     </div>
 </div>
 @endsection
-
 
 
