@@ -46,6 +46,7 @@
         flex-direction: column;
         justify-content: space-between;
         flex-grow: 1;
+        padding: 15px !important;
     }
 
     .card-title {
