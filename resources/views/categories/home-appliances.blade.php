@@ -59,7 +59,6 @@
                         </ul>
                     </div>
                     <div class="col-md-9 product-section mt-5">
-                        <div class="col-md-9 product-section mt-5">
                             <!-- Novedades -->
                             <h2>Novedades</h2>
                             <div class="row mt-4">
