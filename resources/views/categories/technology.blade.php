@@ -28,11 +28,10 @@
         padding: 20px;
     }
 
-    /* Asegurar que todas las tarjetas tengan la misma altura */
+    /* Estilos para asegurar que todas las tarjetas tengan la misma altura */
     .card {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         height: 100%;
         min-height: 450px; /* Ajusta esta altura según tus necesidades */
     }
@@ -43,10 +42,10 @@
     }
 
     .card-body {
-        flex-grow: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        flex-grow: 1;
     }
 
     .card-title {
@@ -56,6 +55,11 @@
 
     .card-text {
         flex-grow: 1;
+        overflow: hidden; /* Ocultar el desbordamiento de texto */
+        text-overflow: ellipsis; /* Añadir puntos suspensivos (...) si el texto es demasiado largo */
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Número de líneas antes de truncar el texto */
+        -webkit-box-orient: vertical;
     }
 
     .btn {
