@@ -65,6 +65,18 @@
     .btn {
         align-self: flex-end;
     }
+
+    /* Estilos responsivos */
+    @media (max-width: 768px) {
+        .card {
+            min-height: auto; /* Permitir que la altura mínima se ajuste en dispositivos móviles */
+        }
+
+        .card-img-top {
+            height: 150px; /* Ajusta esta altura según tus necesidades para dispositivos móviles */
+            object-fit: cover; /* Ajusta este valor si prefieres contain */
+        }
+    }
 </style>
 @extends('layouts.app')
 
@@ -149,4 +161,5 @@
     </div>
 </div>
 @endsection
+
 
