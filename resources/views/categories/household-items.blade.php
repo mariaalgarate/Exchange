@@ -3,7 +3,7 @@
     .banner {
         position: relative;
         height: 300px;
-        background: url('../imgs/bannerHouseHoldItems.jpg') center/cover;
+        background: url('../imgs/bannerTechology.jpg') center/cover;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -26,6 +26,52 @@
 
     .product-section {
         padding: 20px;
+    }
+
+    /* Estilos para asegurar que todas las tarjetas tengan la misma altura */
+    .card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 450px; /* Ajusta esta altura según tus necesidades */
+    }
+
+    .card-img-top {
+        height: 200px;
+      
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .card-text {
+        flex-grow: 1;
+        overflow: hidden; /* Ocultar el desbordamiento de texto */
+        text-overflow: ellipsis; /* Añadir puntos suspensivos (...) si el texto es demasiado largo */
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Número de líneas antes de truncar el texto */
+        -webkit-box-orient: vertical;
+    }
+
+    .btn {
+        align-self: flex-end;
+    }
+
+    /* Estilos responsivos */
+    @media (max-width: 768px) {
+        .card-img-top {
+            height: 150px;
+        width: 180px !important;
+        }
     }
 </style>
 

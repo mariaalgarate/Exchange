@@ -74,6 +74,7 @@
         }
     }
 </style>
+
 @extends('layouts.app')
 
 @section('content')
