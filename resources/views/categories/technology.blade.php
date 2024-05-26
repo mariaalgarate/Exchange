@@ -70,6 +70,7 @@
     @media (max-width: 768px) {
         .card-img-top {
             height: 150px;
+        width: 180px !important;
         }
     }
 </style>
