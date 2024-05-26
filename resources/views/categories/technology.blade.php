@@ -28,15 +28,17 @@
         padding: 20px;
     }
 
-    /* Aseguramos que todas las tarjetas tengan la misma altura */
+    /* Asegurar que todas las tarjetas tengan la misma altura */
     .card {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         height: 100%;
+        min-height: 450px; /* Ajusta esta altura según tus necesidades */
     }
 
     .card-img-top {
-        max-height: 200px;
+        height: 200px;
         object-fit: cover;
     }
 
@@ -60,7 +62,6 @@
         align-self: flex-end;
     }
 </style>
-
 @extends('layouts.app')
 
 @section('content')
@@ -144,3 +145,4 @@
     </div>
 </div>
 @endsection
+
