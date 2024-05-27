@@ -15,7 +15,7 @@ class User extends Authenticatable
 
     public function resenas()
 {
-    return $this->hasMany(Resena::class, 'id_usuario');
+    return $this->hasMany(Resena::class);
 }
 
 }
