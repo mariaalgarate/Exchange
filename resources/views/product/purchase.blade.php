@@ -63,7 +63,7 @@
                 <div class="shipping-options">
                     <!-- Opción con Logo de UPS -->
                     <div class="shipping-option">
-                        <input type="checkbox" id="UPS Access Point" name="empresa_paqueteria[]" value="UPS Access Point"
+                        <input type="checkbox" id="UPS Access Point" name="empresa_paqueteria" value="UPS Access Point"
                             class="@error('empresa_paqueteria') is-invalid @enderror">
                         <label for="UPS Access Point">
                             <img src="https://about.ups.com/content/dam/upsstories/images/logo/ups-logo-wo-text.svg"
@@ -72,7 +72,7 @@
                     </div>
                     <!-- Opción con Logo de InPost -->
                     <div class="shipping-option">
-                        <input type="checkbox" id="InPost" name="empresa_paqueteria[]" value="InPost"
+                        <input type="checkbox" id="InPost" name="empresa_paqueteria" value="InPost"
                             class="@error('empresa_paqueteria') is-invalid @enderror">
                         <label for="InPost">
                             <img src="https://www.inpost.es/media/123493/inpostheader.svg" alt="InPost">
@@ -81,7 +81,7 @@
                     </div>
                     <!-- Otras opciones con diferentes logos -->
                     <div class="shipping-option">
-                        <input type="checkbox" id="Correos" name="empresa_paqueteria[]" value="Correos"
+                        <input type="checkbox" id="Correos" name="empresa_paqueteria" value="Correos"
                             class="@error('empresa_paqueteria') is-invalid @enderror">
                         <label for="Correos">
                             <img src="../imgs/LogoCornamusa.svg" alt="Correos">
@@ -89,14 +89,14 @@
                         </label>
                     </div>
                     <div class="shipping-option">
-                        <input type="checkbox" id="SEUR" name="empresa_paqueteria[]" value="SEUR"
+                        <input type="checkbox" id="SEUR" name="empresa_paqueteria" value="SEUR"
                             class="@error('empresa_paqueteria') is-invalid @enderror">
                         <label for="SEUR">
                             <img src="https://www.seur.com/images/logo.png" alt="SEUR">
                         </label>
                     </div>
                     <div class="shipping-option">
-                        <input type="checkbox" id="DHL" name="empresa_paqueteria[]" value="DHL"
+                        <input type="checkbox" id="DHL" name="empresa_paqueteria" value="DHL"
                             class="@error('empresa_paqueteria') is-invalid @enderror">
                         <label for="DHL">
                             <img src="https://www.dhl.com/content/dam/dhl/global/core/images/logos/dhl-logo.svg"
@@ -104,7 +104,7 @@
                         </label>
                     </div>
                     <div class="shipping-option">
-                        <input type="checkbox" id="GSL" name="empresa_paqueteria[]" value="GSL"
+                        <input type="checkbox" id="GSL" name="empresa_paqueteria" value="GSL"
                             class="@error('empresa_paqueteria') is-invalid @enderror">
                         <label for="GSL">
                             <img src="https://storage.googleapis.com/wp-es-pro-media/2021/10/logo-glswhite.png"
