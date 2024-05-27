@@ -78,7 +78,7 @@ $productos = Producto::all();
                         <p>{{ $producto->descripcion }}</p>
                         <span class="price">{{ number_format($producto->precio_unitario, 2) }}€</span><br><br>
                         <!-- Precio formateado -->
-                        <a href="{{ route('addToCart', ['id' => $producto->id]) }}" class="btn btn-primary">Agregar al carrito</a>
+                        <a href="{{ route('addToCart') }}" class="btn btn-primary">Agregar al carrito</a>
                     </div>
                 @endforeach
             </div>
