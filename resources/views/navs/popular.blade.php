@@ -81,8 +81,6 @@ $productos = Producto::all();
                         <form action="{{ route('addToCart') }}" method="post">
                             @csrf
                             <input type="hidden" name="id_producto" value="{{ $producto->id }}">
-                            <input type="number" name="cantidad_producto" min="1"
-                                value="{{ $producto->cantidad }}">
                             <button type="submit" class="btn btn-primary">Añadir al carrito</button>
                         </form>
                     </div>
