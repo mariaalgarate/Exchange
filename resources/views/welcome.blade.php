@@ -121,7 +121,7 @@
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <a href="{{ route('categories/home-appliances') }}" target="_blank" class="text-decoration-none">
                 <div class="card">
-                    <img src="../imgs/productos-electrodomesticos.jpg" class="card-img-top img-fluid" alt="Electrodomésticos" style="height:180px;">
+                    <img src="../imgs/productos-electrodomesticos.jpg" class="card-img-top img-fluid" alt="Electrodomésticos" style="height:150px;">
                     <div class="card-body">
                         <h5 class="card-title">Electrodomésticos</h5>
                         <p class="card-text">Encuentra lo mejor para tu hogar y cocina.</p>
