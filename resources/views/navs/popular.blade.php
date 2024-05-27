@@ -78,7 +78,13 @@ $productos = Producto::all();
                         <p>{{ $producto->descripcion }}</p>
                         <span class="price">{{ number_format($producto->precio_unitario, 2) }}€</span><br><br>
                         <!-- Precio formateado -->
-                        <a href="{{ route('addToCart') }}" class="btn btn-primary">Agregar al carrito</a>
+                        <form action="{{ route('addToCart') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id_producto" value="{{ $producto->id }}">
+                            <input type="number" name="cantidad_producto" min="1"
+                                value="{{ $producto->cantidad }}">
+                            <button type="submit" class="btn btn-primary">Añadir al carrito</button>
+                        </form>
                     </div>
                 @endforeach
             </div>
