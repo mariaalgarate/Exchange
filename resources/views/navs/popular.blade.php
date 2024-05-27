@@ -80,7 +80,6 @@ $productos = Producto::all();
                         <!-- Precio formateado -->
                         <form action="{{ route('addToCart') }}" method="post">
                             @csrf
-                            <input type="hidden" name="id_producto" value="{{ $producto->id }}">
                             <button type="submit" class="btn btn-primary">Añadir al carrito</button>
                         </form>
                     </div>
